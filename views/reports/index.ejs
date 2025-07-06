@@ -385,52 +385,50 @@ ${profitStats && Object.keys(profitStats).length > 0 ? `
                                 paymentStatusClass = 'bg-warning';
                             }
                             
-                            return \`
-                                <tr>
-                                    <td><strong>\${invoice.invoiceCode}</strong></td>
-                                    <td>\${invoice.client?.fullName || 'غير محدد'}</td>
-                                    <td>
-                                        <div>\${invoice.file?.fileName || 'غير محدد'}</div>
-                                        <small class="text-muted">\${invoice.file?.company?.name || 'غير محدد'}</small>
-                                    </td>
-                                    <td>\${invoice.assignedDistributor?.username || 'غير محدد'}</td>
-                                    <td><span class="badge bg-primary">\${invoice.amount.toLocaleString('ar-SA')} جنيه</span></td>
-                                    <td>
-                                        <div class="commission-display">
-                                            <div class="amount-primary">\${clientCommission.toFixed(2)} جنيه</div>
-                                            <div class="percentage-secondary">%\${invoice.clientCommissionRate}</div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="commission-display">
-                                            <div class="amount-primary">\${distributorCommission.toFixed(2)} جنيه</div>
-                                            <div class="percentage-secondary">%\${invoice.distributorCommissionRate}</div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="commission-display">
-                                            <div class="amount-primary">\${companyCommission.toFixed(2)} جنيه</div>
-                                            <div class="percentage-secondary">%\${invoice.companyCommissionRate}</div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span class="badge \${netProfit >= 0 ? 'bg-success' : 'bg-danger'}">
-                                            \${netProfit.toFixed(2)} جنيه
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span class="badge \${paymentStatusClass}">
-                                            \${paymentStatusText}
-                                        </span>
-                                        <div class="payment-progress mt-1">
-                                            <div class="progress" style="height: 5px;">
-                                                <div class="progress-bar bg-success" style="width: \${(invoice.paymentStatus.clientToDistributor.isPaid ? 33 : 0) + (invoice.paymentStatus.distributorToAdmin.isPaid ? 33 : 0) + (invoice.paymentStatus.adminToCompany.isPaid ? 34 : 0)}%"></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>\${new Date(invoice.invoiceDate).toLocaleDateString('ar-EG')}</td>
-                                </tr>
-                            \`;
+                            return '<tr>' +
+                                '<td><strong>' + invoice.invoiceCode + '</strong></td>' +
+                                '<td>' + (invoice.client?.fullName || 'غير محدد') + '</td>' +
+                                '<td>' +
+                                    '<div>' + (invoice.file?.fileName || 'غير محدد') + '</div>' +
+                                    '<small class="text-muted">' + (invoice.file?.company?.name || 'غير محدد') + '</small>' +
+                                '</td>' +
+                                '<td>' + (invoice.assignedDistributor?.username || 'غير محدد') + '</td>' +
+                                '<td><span class="badge bg-primary">' + invoice.amount.toLocaleString('ar-SA') + ' جنيه</span></td>' +
+                                '<td>' +
+                                    '<div class="commission-display">' +
+                                        '<div class="amount-primary">' + clientCommission.toFixed(2) + ' جنيه</div>' +
+                                        '<div class="percentage-secondary">%' + invoice.clientCommissionRate + '</div>' +
+                                    '</div>' +
+                                '</td>' +
+                                '<td>' +
+                                    '<div class="commission-display">' +
+                                        '<div class="amount-primary">' + distributorCommission.toFixed(2) + ' جنيه</div>' +
+                                        '<div class="percentage-secondary">%' + invoice.distributorCommissionRate + '</div>' +
+                                    '</div>' +
+                                '</td>' +
+                                '<td>' +
+                                    '<div class="commission-display">' +
+                                        '<div class="amount-primary">' + companyCommission.toFixed(2) + ' جنيه</div>' +
+                                        '<div class="percentage-secondary">%' + invoice.companyCommissionRate + '</div>' +
+                                    '</div>' +
+                                '</td>' +
+                                '<td>' +
+                                    '<span class="badge ' + (netProfit >= 0 ? 'bg-success' : 'bg-danger') + '">' +
+                                        netProfit.toFixed(2) + ' جنيه' +
+                                    '</span>' +
+                                '</td>' +
+                                '<td>' +
+                                    '<span class="badge ' + paymentStatusClass + '">' +
+                                        paymentStatusText +
+                                    '</span>' +
+                                    '<div class="payment-progress mt-1">' +
+                                        '<div class="progress" style="height: 5px;">' +
+                                            '<div class="progress-bar bg-success" style="width: ' + ((invoice.paymentStatus.clientToDistributor.isPaid ? 33 : 0) + (invoice.paymentStatus.distributorToAdmin.isPaid ? 33 : 0) + (invoice.paymentStatus.adminToCompany.isPaid ? 34 : 0)) + '%"></div>' +
+                                        '</div>' +
+                                    '</div>' +
+                                '</td>' +
+                                '<td>' + new Date(invoice.invoiceDate).toLocaleDateString('ar-EG') + '</td>' +
+                            '</tr>';
                         }).join('')}
                     </tbody>
                 </table>
